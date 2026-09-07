@@ -2,13 +2,14 @@
 
 All notable changes to Lobster will be documented in this file.
 
-## Unreleased
+## 2026.9.7 - 2026-09-07
 
 **Highlights:** Direct `exec --json` commands now preserve their executable, alongside more reliable npm release promotion.
 
 - Fix `exec --json <command...>` consuming the executable as the JSON flag's value, restoring direct commands and quoted shell commands while preserving value-taking options.
 - Retry the npm `latest` dist-tag read-back with backoff after promoting a beta release, so registry propagation delay no longer fails a promotion that already succeeded.
 - Update development, CI, and release tooling to pnpm 12.3.4 and pnpm/action-setup 6.1.0 for native pnpm 12 installation support, retaining the two-day dependency release-age policy.
+- Accept dated changelog headings during npm release validation.
 
 ## 2026.9.5
 
