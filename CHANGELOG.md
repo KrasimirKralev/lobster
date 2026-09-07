@@ -2,6 +2,8 @@
 
 All notable changes to Lobster will be documented in this file.
 
+## Unreleased
+
 ## 2026.9.7 - 2026-09-07
 
 **Highlights:** Direct `exec --json` commands now preserve their executable, alongside more reliable npm release promotion.
