@@ -2,7 +2,7 @@
 
 All notable changes to Lobster will be documented in this file.
 
-## Unreleased
+## 2026.9.8 - 2026-09-07
 
 **Highlights:** Workflow loops honor their execution policies, and paid LLM calls cannot hide from budget checks when a later pipeline command fails.
 
