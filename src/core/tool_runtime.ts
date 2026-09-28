@@ -3,14 +3,12 @@ import path from "node:path";
 
 import { createDefaultRegistry } from "../commands/registry.js";
 import { parsePipeline } from "../parser.js";
-import { decodeResumeToken, kindFromStateKey } from "../resume.js";
+import { decodeResumeToken, resolveApprovalId } from "../resume.js";
 import { runPipeline } from "../runtime.js";
-import { encodeToken } from "../token.js";
 import {
 	deleteStateJsonWithBoundedResumeCleanup,
 	deleteUnconsumedResumeState,
 	deleteApprovalId,
-	findStateKeyByApprovalId,
 	cleanupApprovalIndexByStateKey,
 	consumeResumeState,
 	restoreConsumedResumeState,
@@ -183,17 +181,7 @@ export async function resumeToolRequest({
 		// Resolve short approval ID to token if provided
 		let resolvedToken: string;
 		if (approvalId) {
-			const stateKey = await findStateKeyByApprovalId({ env: runtime.env, approvalId });
-			if (!stateKey) {
-				return errorEnvelope("parse_error", `Approval ID "${approvalId}" not found or expired`);
-			}
-			const kind = kindFromStateKey(stateKey);
-			resolvedToken = encodeToken({
-				protocolVersion: 1,
-				v: 1,
-				kind,
-				stateKey,
-			});
+			resolvedToken = await resolveApprovalId(approvalId, runtime.env);
 		} else if (token) {
 			resolvedToken = token;
 		} else {
