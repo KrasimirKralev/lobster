@@ -93,13 +93,16 @@ test("resume with invalid --id returns clear error", async () => {
 	const result = runCli(["resume", "--id", "deadbeef", "--approve", "yes"], {
 		LOBSTER_STATE_DIR: stateDir,
 	});
-	// Should fail with a clear error message
+	assert.equal(result.status, 2, `stderr: ${result.stderr}`);
 	const json = JSON.parse(result.stdout);
-	assert.equal(json.ok, false);
-	assert.ok(
-		json.error?.message?.includes("not found"),
-		`Error should mention not found: ${json.error?.message}`,
-	);
+	assert.deepEqual(json, {
+		protocolVersion: 1,
+		ok: false,
+		error: {
+			type: "parse_error",
+			message: 'Approval ID "deadbeef" not found or expired',
+		},
+	});
 });
 
 test("--token resume cleans up orphaned approval index", async () => {

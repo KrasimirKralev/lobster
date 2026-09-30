@@ -4,6 +4,8 @@ All notable changes to Lobster will be documented in this file.
 
 ## Unreleased
 
+- Share approval-ID resolution between tool and CLI resume paths, preserving token formats and error envelopes; thanks @KrasimirKralev (PR [#192](https://github.com/openclaw/lobster/pull/192)).
+
 ## 2026.9.14 - 2026-09-21
 
 **Highlights:** OpenClaw LLM pipelines use the gateway's current tool protocol, and large tables render without crashing.
