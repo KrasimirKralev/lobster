@@ -4,6 +4,8 @@ All notable changes to Lobster will be documented in this file.
 
 ## Unreleased
 
+- Remove the unused internal `getFilter` helper from the template filters; `applyFilters` keeps reading the filter table directly and template output is unchanged; thanks @KrasimirKralev.
+
 ## 2026.10.1 - 2026-10-20
 
 **Highlights:** Honor host invocation authority before effects, prevent unsafe resume replay, and report invalid workflow paths consistently.
